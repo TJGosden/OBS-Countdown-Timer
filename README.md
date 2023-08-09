@@ -18,4 +18,4 @@ Selecting this will hide all the settings and reveal buttons which you can use t
 ![Settings](GUI_buttons.PNG)
 
 
-#Streaming integration
+# Streaming Integration

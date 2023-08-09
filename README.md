@@ -12,7 +12,10 @@ To use this timer, you must add the "Timer.py" file to your obs "Scripts" tab wh
 
 ![Settings](GUI_settings.PNG)
 
-### Once you set all the settings you can select the "Go to Start" check box. 
+## Once you set all the settings you can select the "Start" check box. 
 Selecting this will hide all the settings and reveal buttons which you can use to control the Timer, as well as a slider in which you can use to change the amount of time you can add to duration left.
 
 ![Settings](GUI_buttons.PNG)
+
+
+#Streaming integration

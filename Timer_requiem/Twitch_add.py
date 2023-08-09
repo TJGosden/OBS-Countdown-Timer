@@ -35,8 +35,14 @@ def twitch_add(currentTime, addTime):
 
 #Get the file path in which the file "time.txt is stored.
 def get_increase_file_path():
-    path = os.path.join(os.getenv('APPDATA'), "obs-countdown")
+    # Get the current directory (where the script is located)
+    script_directory = os.path.dirname(os.path.abspath(__file__))
+    # Name of the file you're searching for
+    target_file_name = "time.txt"
+
+    # Construct the full path to the target file
+    target_file_path = os.path.join(script_directory, target_file_name)
     #Create the folder "obs-countdown" if it doesn't already exist.
-    if not os.path.exists(path):
-        os.makedirs(path)
-    return os.path.join(path, "time.txt")
+    if not os.path.exists(target_file_path):
+        print(".txt File not found in the script directory.")
+    return target_file_path

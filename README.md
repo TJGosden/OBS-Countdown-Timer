@@ -20,3 +20,5 @@ Selecting this will hide all the settings and reveal buttons which you can use t
 
 # Streaming Integration
 This script also has the ability for viewers to add to the timer under certain conditions, i.e. Channel Points. However, this requires external software such as "MixItUp", which allows you to create custom channel point rewards, or interactions based on subscriptions, or donations.
+
+The function must append the following variables (E.g. q, or s) to the "time.txt" file found alongside this script. This is described further in "Twitch_add.py".

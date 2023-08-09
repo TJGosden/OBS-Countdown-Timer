@@ -19,3 +19,4 @@ Selecting this will hide all the settings and reveal buttons which you can use t
 
 
 # Streaming Integration
+This script also has the ability for viewers to add to the timer under certain conditions, i.e. Channel Points. However, this requires external software such as "MixItUp", which allows you to create custom channel point rewards, or interactions based on subscriptions, or donations.

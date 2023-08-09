@@ -1,10 +1,10 @@
 # OBS Python Countdown Timer
 ### Download the "Timer_requiem" folder
-OBS script which allows you to turn a text source into countdown timer.
+OBS script which allows you to turn a text source into countdown timer.  Including Hotkeys to start/stop, reset and add to the timer
 You can set the duration of the timer, the source it uses, and you can set an mp3 file which can be triggered alongside a flashing alert when the timer is below 60 seconds. This feature can be toggled on or off.
 
 # How To Use
-To use this timer, you must add the "Timer.py" file to your obs "Scripts" tab which can be found under "Tool".
+To use this timer, you must add the "Timer.py" file to your obs "Scripts" tab which can be found under "Tools".
 
 - First you must input the duration of the timer in seconds (i.e. if you wanted the timer to run for an hour you input 3600)
 - Set the source which the timer will use. If there is no options you will have to create a text source.

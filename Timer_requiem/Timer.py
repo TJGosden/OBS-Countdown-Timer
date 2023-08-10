@@ -274,6 +274,7 @@ class Timer:
     originalScale.x = 1
     originalScale.y = 1
     alertBool = False
+    restart = False
 
 
     def timer_start():
@@ -293,7 +294,7 @@ class Timer:
             obs.obs_data_set_string(settings, "text", Timer.finish)
             obs.timer_remove(Timer.timer_start)
             b.pause = True
-            Timer.currentTime = Timer.setTime
+            Timer.restart = True
         obs.obs_source_update(source, settings)
         #Release
         obs.obs_data_release(settings)
@@ -304,6 +305,12 @@ class Timer:
             Timer.play_song()
             Timer.colour_alert()
             Timer.alert_move()
+
+        if (Timer.restart == True):
+            Timer.currentTime = Timer.setTime
+            Timer.restart = False
+            
+
     
     #Check if the timer is below 60s then play or stop the song depending on the duration
     def play_song():
@@ -315,6 +322,7 @@ class Timer:
             setup.played = False
         elif (Timer.currentTime == 0):
             setup.p.stop()
+            setup.played = False
 
     def colour_alert():
         # When the timer is below 60 seconds set the function "alert_flash" on a timer 

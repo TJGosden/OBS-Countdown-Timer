@@ -210,7 +210,9 @@ def script_properties():
         obs.source_list_release(sources)
 
     obs.obs_properties_add_path(props, "filePath", "Select mp3 file", obs.OBS_PATH_FILE, "*.mp3*", 'c:/')
-    obs.obs_properties_add_bool(props, "alertBool", "Alert")
+    alert = obs.obs_properties_add_bool(props, "alertBool", "Alert")
+    obs.obs_property_set_modified_callback(alert, setup.enable_song_path)
+    obs.obs_property_set_long_description(alert, "Enable/Disable timer alert when 'duration < 60 seconds'")
 
     hide = obs.obs_properties_add_bool(props, "hideBool", "Start")
     obs.obs_property_set_modified_callback(hide, setup.check_input_use)
@@ -248,6 +250,7 @@ def script_update(settings):
     Timer.alertBool = obs.obs_data_get_bool(settings, "alertBool")
     if (Timer.alertBool == True):
         setup.create_filter(settings)
+
 
     setup.useFile = obs.obs_data_get_bool(settings, "hideBool")
     #Check for song
@@ -295,22 +298,23 @@ class Timer:
             obs.timer_remove(Timer.timer_start)
             b.pause = True
             Timer.restart = True
+            b.timerActive = False
         obs.obs_source_update(source, settings)
         #Release
         obs.obs_data_release(settings)
         obs.obs_source_release(source)
 
+        # Trigger alert functions
         Timer.currentTime = twitch.twitch_add(Timer.currentTime, Timer.addTime)
         if (Timer.alertBool == True):
             Timer.play_song()
             Timer.colour_alert()
             Timer.alert_move()
-
+        
+        # Set the timer back to original value, needs to be done after alert functions are called
         if (Timer.restart == True):
             Timer.currentTime = Timer.setTime
             Timer.restart = False
-            
-
     
     #Check if the timer is below 60s then play or stop the song depending on the duration
     def play_song():
@@ -452,6 +456,13 @@ class Timer_Setup:
         else:
             print("Please set a song, or uncheck both boxes")
         return True
+
+    def enable_song_path(props, prop, settings):
+        enable = obs.obs_data_get_bool(settings, "alertBool")
+        fp = obs.obs_properties_get(props, "filePath")
+        obs.obs_property_set_enabled(fp, not enable)
+        return True
+
 
     # Called to switch between the settings inputs and the control buttons
     def all_properties(props):
